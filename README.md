@@ -1,19 +1,19 @@
 # WebProxy
 
-A simple HTTP proxy server built with Bun that forwards client requests to multiple backend servers based on URL paths, preserving the client's real IP address.
+Bunを使用して構築されたシンプルなHTTPプロキシサーバーで、URLパスに基づいてクライアントリクエストを複数のバックエンドサーバーに転送し、クライアントの実際のIPアドレスを保持します。
 
-## Features
+## 機能
 
-- HTTP proxy server with path-based routing
-- Preserves client IP in `X-Forwarded-For` and `X-Real-IP` headers
-- Configurable multiple target hosts and ports
-- Built with Bun for high performance
-- Only proxy port needs to be open, backend servers remain internal
-- **Request logging**: Displays client IP, request path, routing information, and response status
+- パスベースのルーティングを使用したHTTPプロキシサーバー
+- `X-Forwarded-For`および`X-Real-IP`ヘッダーでクライアントIPを保持
+- 複数のターゲットホストとポートを設定可能
+- Bunを使用した高性能
+- プロキシポートのみを外部に開放する必要があり、バックエンドサーバーは内部に保持可能
+- **リクエストログ**: クライアントIP、リクエストパス、ルーティング情報、レスポンスステータスを表示
 
-## Request Logging
+## リクエストログ
 
-The proxy server logs all incoming requests with the following format:
+プロキシサーバーはすべての受信リクエストを以下の形式でログ出力します：
 
 ```
 [2025-08-27T10:30:00.000Z] 192.168.1.100 - GET /api/users → /api (localhost:3000) - 200 OK
@@ -21,11 +21,11 @@ The proxy server logs all incoming requests with the following format:
 [2025-08-27T10:30:10.000Z] 192.168.1.100 - GET /health → / (localhost:5000) - 503 Service Unavailable
 ```
 
-Log format: `[timestamp] client_ip - method url → route (target_host:target_port) - status_code status_text`
+ログ形式: `[タイムスタンプ] クライアントIP - メソッド URL → ルート (ターゲットホスト:ターゲットポート) - ステータスコード ステータステキスト`
 
-## Configuration
+## 設定
 
-Edit `src/settings/config.json` to configure the proxy:
+`src/settings/config.json`を編集してプロキシを設定します：
 
 ```json
 {
@@ -50,50 +50,50 @@ Edit `src/settings/config.json` to configure the proxy:
 }
 ```
 
-The proxy will automatically load the configuration from this JSON file.
+プロキシは自動的にこのJSONファイルから設定を読み込みます。
 
-## Running Test Servers
+## テストサーバーの起動
 
-The project includes test servers that you can use to test the proxy functionality. These servers run on the configured backend ports.
+このプロジェクトにはプロキシ機能をテストするために使用できるテストサーバーが含まれています。これらのサーバーは設定されたバックエンドポートで実行されます。
 
-### Start All Test Servers
+### すべてのテストサーバーを起動
 
 ```bash
 bun run start:servers
-# or
+# または
 npm run start:servers
 ```
 
-This will start:
-- API Server on port 3000 (JSON responses)
-- Web Server on port 4000 (HTML responses)
-- Default Server on port 5000 (plain text responses)
+これにより以下のサーバーが起動します：
+- APIサーバー（ポート3000）（JSONレスポンス）
+- Webサーバー（ポート4000）（HTMLレスポンス）
+- デフォルトサーバー（ポート5000）（プレーンテキストレスポンス）
 
-### Start Individual Servers
+### 個別のサーバーを起動
 
 ```bash
-bun run start:api      # Start API server (port 3000)
-bun run start:web      # Start Web server (port 4000)
-bun run start:default  # Start Default server (port 5000)
+bun run start:api      # APIサーバーを起動（ポート3000）
+bun run start:web      # Webサーバーを起動（ポート4000）
+bun run start:default  # デフォルトサーバーを起動（ポート5000）
 ```
 
-### Test Endpoints
+### テストエンドポイント
 
-Once the test servers are running, you can test the proxy:
+テストサーバーが起動したら、プロキシをテストできます：
 
-- `http://localhost:8080/api/users` → API server (JSON)
-- `http://localhost:8080/api/status` → API server (JSON)
-- `http://localhost:8080/web/dashboard` → Web server (HTML dashboard)
-- `http://localhost:8080/health` → Default server (JSON)
-- `http://localhost:8080/info` → Default server (plain text)
-- `http://localhost:8080/` → Default server (welcome message)
+- `http://localhost:8080/api/users` → APIサーバー（JSON）
+- `http://localhost:8080/api/status` → APIサーバー（JSON）
+- `http://localhost:8080/web/dashboard` → Webサーバー（HTMLダッシュボード）
+- `http://localhost:8080/health` → デフォルトサーバー（JSON）
+- `http://localhost:8080/info` → デフォルトサーバー（プレーンテキスト）
+- `http://localhost:8080/` → デフォルトサーバー（ウェルカムメッセージ）
 
-## Usage
+## 使用方法
 
-1. Start your backend servers on the configured target ports
-2. Run the proxy: `bun run src/index.ts`
-3. Send requests to `http://localhost:8080`
-4. The proxy will route them to the appropriate backend server based on the URL path
-5. Only the proxy port (8080) needs to be open externally; backend servers can remain internal without port exposure
+1. 設定されたターゲットポートでバックエンドサーバーを起動
+2. プロキシを実行: `bun run src/index.ts`
+3. `http://localhost:8080`にリクエストを送信
+4. プロキシはURLパスに基づいて適切なバックエンドサーバーにルーティングします
+5. 外部に開放する必要があるのはプロキシポート（8080）のみで、バックエンドサーバーはポート開放なしで内部に保持可能
 
-This project was created using `bun init` in bun v1.1.36. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+このプロジェクトはBun v1.1.36の`bun init`を使用して作成されました。[Bun](https://bun.sh)は高速なオールインワンJavaScriptランタイムです。
