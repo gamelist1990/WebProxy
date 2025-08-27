@@ -3,6 +3,9 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
+    "build": "bun build --compile --target=bun-windows-x64 src/index.ts --outfile WebProxy",
+    "build:servers": "bun build src/webserver/*.ts --outdir dist/servers --target bun",
+    "build:all": "bun build src/index.ts src/webserver/*.ts --outdir dist --target bun",
     "start": "bun run src/index.ts",
     "start:servers": "bun run src/webserver/start-servers.ts",
     "start:api": "bun run src/webserver/api-server.ts",
