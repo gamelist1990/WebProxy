@@ -1,0 +1,21 @@
+{
+  "name": "webproxy",
+  "module": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "start:servers": "bun run src/webserver/start-servers.ts",
+    "start:api": "bun run src/webserver/api-server.ts",
+    "start:web": "bun run src/webserver/web-server.ts",
+    "start:default": "bun run src/webserver/default-server.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "haproxy": "^0.3.0"
+  }
+}

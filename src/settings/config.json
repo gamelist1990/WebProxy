@@ -1,0 +1,20 @@
+{
+  "listenPort": 8080,
+  "routes": [
+    {
+      "path": "/api",
+      "targetHost": "localhost",
+      "targetPort": 3000
+    },
+    {
+      "path": "/web",
+      "targetHost": "localhost",
+      "targetPort": 4000
+    },
+    {
+      "path": "/",
+      "targetHost": "localhost",
+      "targetPort": 5000
+    }
+  ]
+}

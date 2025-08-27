@@ -1,0 +1,45 @@
+{
+    "include": [
+        "src/**/*.ts",
+        "gobal.d.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "watchOptions": {
+        "excludeDirectories": [
+            "node_modules"
+        ]
+    },
+    "libChecking": true,
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "lib": [
+            "ESNext",
+            "DOM"
+        ],
+        "noEmit": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "strict": true,
+        "allowJs": true,
+        "checkJs": true,
+        "outDir": "scripts",
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictPropertyInitialization": true,
+        "strictBindCallApply": true,
+        "noImplicitReturns": false,
+        "noUnusedLocals": true,
+        "noImplicitAny": false,
+        "alwaysStrict": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitThis": true,
+        "noUnusedParameters": true,
+        "sourceMap": false,
+        "removeComments": true,
+        "allowSyntheticDefaultImports": true
+    }
+}
